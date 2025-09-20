@@ -6,7 +6,6 @@
 #include "queue.h"
 #include "pipeline.h"
 
-// TODO : Vérifier si fuite de mémoire, figure out comment savoir les quantités de threads supportés par le serveur
 
 #define MAX_QUEUE_SIZE 576
 #define UPSCALE_FACTOR 3

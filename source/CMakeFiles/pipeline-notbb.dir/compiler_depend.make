@@ -287,6 +287,11 @@ CMakeFiles/pipeline-notbb.dir/pipeline-pthread.c.o: pipeline-pthread.c \
   /usr/include/bits/stdio_lim.h \
   /usr/include/bits/floatn.h \
   /usr/include/bits/floatn-common.h \
+  /usr/lib/gcc/x86_64-redhat-linux/11/include/stdint.h \
+  /usr/include/stdint.h \
+  /usr/include/bits/wchar.h \
+  /usr/include/bits/stdint-intn.h \
+  /usr/include/bits/stdint-uintn.h \
   /usr/include/pthread.h \
   /usr/include/sched.h \
   /usr/include/bits/types/time_t.h \
@@ -316,6 +321,13 @@ CMakeFiles/pipeline-notbb.dir/pipeline-pthread.c.o: pipeline-pthread.c \
   /usr/include/bits/types/struct___jmp_buf_tag.h \
   /usr/include/bits/pthread_stack_min-dynamic.h \
   /usr/include/bits/pthread_stack_min.h \
+  /usr/include/unistd.h \
+  /usr/include/bits/posix_opt.h \
+  /usr/include/bits/environments.h \
+  /usr/include/bits/confname.h \
+  /usr/include/bits/getopt_posix.h \
+  /usr/include/bits/getopt_core.h \
+  /usr/include/bits/unistd_ext.h \
   /usagers1/anstah/Documents/INF8601_TP1/include/filter.h \
   /usagers1/anstah/Documents/INF8601_TP1/include/image.h \
   /usr/include/dirent.h \
@@ -326,7 +338,6 @@ CMakeFiles/pipeline-notbb.dir/pipeline-pthread.c.o: pipeline-pthread.c \
   /usr/include/bits/dirent_ext.h \
   /usr/lib/gcc/x86_64-redhat-linux/11/include/stdbool.h \
   /usr/include/sys/types.h \
-  /usr/include/bits/stdint-intn.h \
   /usr/include/endian.h \
   /usr/include/bits/byteswap.h \
   /usr/include/bits/uintn-identity.h \
@@ -499,6 +510,12 @@ pipeline-serial.c:
 
 /usr/include/pthread.h:
 
+/usr/include/bits/stdint-uintn.h:
+
+/usr/include/bits/wchar.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/11/include/stdint.h:
+
 pipeline-pthread.c:
 
 /usr/include/bits/posix1_lim.h:
@@ -542,6 +559,8 @@ main.c:
 /usr/include/bits/stdint-intn.h:
 
 /usr/include/bits/sigstksz.h:
+
+/usr/include/stdint.h:
 
 /usr/include/linux/limits.h:
 
