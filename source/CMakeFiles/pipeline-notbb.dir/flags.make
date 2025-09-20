@@ -6,5 +6,5 @@ C_DEFINES =
 
 C_INCLUDES = -I/usagers1/anstah/Documents/INF8601_TP1/include
 
-C_FLAGS = -fmacro-prefix-map=/usagers1/anstah/Documents/INF8601_TP1/=
+C_FLAGS = -g -fmacro-prefix-map=/usagers1/anstah/Documents/INF8601_TP1/=
 

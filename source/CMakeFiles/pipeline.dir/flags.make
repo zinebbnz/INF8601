@@ -7,11 +7,11 @@ C_DEFINES =
 
 C_INCLUDES = -I/usagers1/anstah/Documents/INF8601_TP1/include
 
-C_FLAGS = -fmacro-prefix-map=/usagers1/anstah/Documents/INF8601_TP1/=
+C_FLAGS = -g -fmacro-prefix-map=/usagers1/anstah/Documents/INF8601_TP1/=
 
 CXX_DEFINES = 
 
 CXX_INCLUDES = -I/usagers1/anstah/Documents/INF8601_TP1/include
 
-CXX_FLAGS = -fno-rtti -std=gnu++20 -fmacro-prefix-map=/usagers1/anstah/Documents/INF8601_TP1/=
+CXX_FLAGS = -fno-rtti -g -std=gnu++20 -fmacro-prefix-map=/usagers1/anstah/Documents/INF8601_TP1/=
 
