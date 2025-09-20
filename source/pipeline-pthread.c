@@ -21,6 +21,7 @@ static void* read_image(void* arg){
 		}
 
 		queue_push(ready_to_scale_queue, image);
+		image_destroy(image);
 	}
 }
 
@@ -60,6 +61,7 @@ static void* save_image(void* arg){
 
 		image_dir_t* image_dir = (image_dir_t*)arg;
 		image_dir_save(image_dir, image);
+		image_destroy(image);
 	}
 }
 
@@ -85,10 +87,10 @@ int pipeline_pthread(image_dir_t* image_dir) {
 
 	init_queues();
 
-	pthread_create(thread_create, NULL, read_image, image_dir);
-	pthread_create(thread_scale, NULL, upscale_image, NULL);
-	pthread_create(thread_reverse, NULL, reverse_image, NULL);
-	pthread_create(thread_save, NULL, save_image, image_dir);
+	pthread_create(&thread_create, NULL, read_image, image_dir);
+	pthread_create(&thread_scale, NULL, upscale_image, NULL);
+	pthread_create(&thread_reverse, NULL, reverse_image, NULL);
+	pthread_create(&thread_save, NULL, save_image, image_dir);
 
 
 	pthread_join(thread_create, NULL);
@@ -98,5 +100,5 @@ int pipeline_pthread(image_dir_t* image_dir) {
 
 	destroy_queues();
 
-	return -1;
+	return 0;
 }

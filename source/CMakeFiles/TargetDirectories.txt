@@ -1,0 +1,16 @@
+/usagers1/anstah/Documents/INF8601_TP1/source/CMakeFiles/pipeline.dir
+/usagers1/anstah/Documents/INF8601_TP1/source/CMakeFiles/pipeline-notbb.dir
+/usagers1/anstah/Documents/INF8601_TP1/source/CMakeFiles/format.dir
+/usagers1/anstah/Documents/INF8601_TP1/source/CMakeFiles/remise.dir
+/usagers1/anstah/Documents/INF8601_TP1/source/CMakeFiles/run-serial.dir
+/usagers1/anstah/Documents/INF8601_TP1/source/CMakeFiles/run-pthread.dir
+/usagers1/anstah/Documents/INF8601_TP1/source/CMakeFiles/run-tbb.dir
+/usagers1/anstah/Documents/INF8601_TP1/source/CMakeFiles/run-all.dir
+/usagers1/anstah/Documents/INF8601_TP1/source/CMakeFiles/generate-image.dir
+/usagers1/anstah/Documents/INF8601_TP1/source/CMakeFiles/check.dir
+/usagers1/anstah/Documents/INF8601_TP1/source/CMakeFiles/edit_cache.dir
+/usagers1/anstah/Documents/INF8601_TP1/source/CMakeFiles/rebuild_cache.dir
+/usagers1/anstah/Documents/INF8601_TP1/source/CMakeFiles/list_install_components.dir
+/usagers1/anstah/Documents/INF8601_TP1/source/CMakeFiles/install.dir
+/usagers1/anstah/Documents/INF8601_TP1/source/CMakeFiles/install/local.dir
+/usagers1/anstah/Documents/INF8601_TP1/source/CMakeFiles/install/strip.dir
