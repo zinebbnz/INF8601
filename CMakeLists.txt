@@ -6,8 +6,12 @@ set(CMAKE_CXX_FLAGS "-fno-rtti")
 
 include_directories(include)
 
+# >>> AJOUT POUR TBB 2020.3 
+include_directories(${CMAKE_SOURCE_DIR}/tbb/include)
+link_directories(${CMAKE_SOURCE_DIR}/tbb/lib/intel64/gcc4.8)
+
 add_executable(pipeline)
-target_link_libraries(pipeline -lm -pthread -lpng -ltbb)
+target_link_libraries(pipeline -lm -pthread -lpng tbb)  # >>> ENLEVER -ltbb, et remplacer par "tbb"
 target_sources(pipeline PUBLIC
     source/filter.c
     source/image.c
