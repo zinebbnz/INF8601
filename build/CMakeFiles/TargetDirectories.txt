@@ -1,0 +1,16 @@
+/home/zineb/INF8601_TP1/build/CMakeFiles/pipeline.dir
+/home/zineb/INF8601_TP1/build/CMakeFiles/pipeline-notbb.dir
+/home/zineb/INF8601_TP1/build/CMakeFiles/format.dir
+/home/zineb/INF8601_TP1/build/CMakeFiles/remise.dir
+/home/zineb/INF8601_TP1/build/CMakeFiles/run-serial.dir
+/home/zineb/INF8601_TP1/build/CMakeFiles/run-pthread.dir
+/home/zineb/INF8601_TP1/build/CMakeFiles/run-tbb.dir
+/home/zineb/INF8601_TP1/build/CMakeFiles/run-all.dir
+/home/zineb/INF8601_TP1/build/CMakeFiles/generate-image.dir
+/home/zineb/INF8601_TP1/build/CMakeFiles/check.dir
+/home/zineb/INF8601_TP1/build/CMakeFiles/edit_cache.dir
+/home/zineb/INF8601_TP1/build/CMakeFiles/rebuild_cache.dir
+/home/zineb/INF8601_TP1/build/CMakeFiles/list_install_components.dir
+/home/zineb/INF8601_TP1/build/CMakeFiles/install.dir
+/home/zineb/INF8601_TP1/build/CMakeFiles/install/local.dir
+/home/zineb/INF8601_TP1/build/CMakeFiles/install/strip.dir
