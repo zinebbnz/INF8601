@@ -7,7 +7,7 @@
 #include "pipeline.h"
 
 
-#define MAX_QUEUE_SIZE 576
+#define MAX_QUEUE_SIZE 10
 #define UPSCALE_FACTOR 3
 
 static queue_t* ready_to_scale_queue;
@@ -52,9 +52,7 @@ static void* upscale_image(void* arg){
 	}
 
 	long max_threads = (long)(intptr_t)arg;
-	for(int i = 0 ; i < max_threads ; i++){
 		queue_push(ready_to_reverse_queue, NULL);
-	}
 
 	return NULL;
 }
@@ -72,9 +70,7 @@ static void* reverse_image(void* arg){
 	}
 
 	long max_threads = (long)(intptr_t)arg;
-	for(int i = 0 ; i < max_threads ; i++){
 		queue_push(ready_to_save_queue, NULL);
-	}
 
 	return NULL;
 }

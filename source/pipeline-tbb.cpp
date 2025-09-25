@@ -1,47 +1,44 @@
+#define TBB_SUPPRESS_DEPRECATED_MESSAGES 1
 #include <tbb/pipeline.h>
 #include <tbb/task_scheduler_init.h>
+#include <thread>
 #include <cstdio>
 
 extern "C" {
-#include "image.h"     // image_t, image_dir_*
-#include "filter.h"    // filter_scale_up, filter_vertical_flip
-#include "pipeline.h"  // int pipeline_tbb(image_dir_t*)
+#include "image.h"
+#include "filter.h"
+#include "pipeline.h"
 }
 
-// 1) Lecture : serial_in_order ⇒ pas besoin de mutex
+// 1) Lecture (serial_in_order)
 class LoadFilter : public tbb::filter {
 public:
     explicit LoadFilter(image_dir_t* dir)
-        : tbb::filter(serial_in_order), dir_(dir) {}
-
+        : tbb::filter(tbb::filter::serial_in_order), dir_(dir) {}
     void* operator()(void*) override {
-        // nullptr => fin du pipeline
-        return image_dir_load_next(dir_);
+        return image_dir_load_next(dir_); // nullptr => fin
     }
-
 private:
     image_dir_t* dir_;
 };
 
-// 2) Mise à l’échelle ×3 : parallèle
+// 2) Scale x3 (parallel)
 class ScaleFilter : public tbb::filter {
 public:
-    ScaleFilter() : tbb::filter(parallel) {}
-
+    ScaleFilter() : tbb::filter(tbb::filter::parallel) {}
     void* operator()(void* item) override {
         image_t* in = static_cast<image_t*>(item);
         if (!in) return nullptr;
-        image_t* out = filter_scale_up(in, 3); // <<< facteur 3
-        image_destroy(in);                     // filtres allouent => on libère l’entrée
+        image_t* out = filter_scale_up(in, 3);
+        image_destroy(in);
         return out;
     }
 };
 
-// 3) Inversion verticale : parallèle
+// 3) Flip vertical (parallel)
 class FlipFilter : public tbb::filter {
 public:
-    FlipFilter() : tbb::filter(parallel) {}
-
+    FlipFilter() : tbb::filter(tbb::filter::parallel) {}
     void* operator()(void* item) override {
         image_t* in = static_cast<image_t*>(item);
         if (!in) return nullptr;
@@ -51,12 +48,11 @@ public:
     }
 };
 
-// 4) Sauvegarde : serial_in_order pour I/O propre + affichage “.”
+// 4) Sauvegarde (serial_in_order)
 class SaveFilter : public tbb::filter {
 public:
     explicit SaveFilter(image_dir_t* dir)
-        : tbb::filter(serial_in_order), dir_(dir) {}
-
+        : tbb::filter(tbb::filter::serial_in_order), dir_(dir) {}
     void* operator()(void* item) override {
         image_t* img = static_cast<image_t*>(item);
         if (!img) return nullptr;
@@ -64,16 +60,16 @@ public:
         std::fputc('.', stdout);
         std::fflush(stdout);
         image_destroy(img);
-        return nullptr;  // fin pour cet élément
+        return nullptr;
     }
-
 private:
     image_dir_t* dir_;
 };
 
 int pipeline_tbb(image_dir_t* image_dir) {
-    // Initialisation du scheduler TBB “classique”
-    tbb::task_scheduler_init init(tbb::task_scheduler_init::automatic);
+    // Threads et arena explicites pour éviter un runtime à 1 thread
+    int hw = (int)std::max(2u, std::thread::hardware_concurrency());
+    tbb::task_scheduler_init init(hw);
 
     try {
         LoadFilter  f_load(image_dir);
@@ -82,16 +78,15 @@ int pipeline_tbb(image_dir_t* image_dir) {
         SaveFilter  f_save(image_dir);
 
         tbb::pipeline pipe;
-        pipe.add_filter(f_load);   // 1) lire
-        pipe.add_filter(f_scale);  // 2) scale ×3
-        pipe.add_filter(f_flip);   // 3) flip vertical
-        pipe.add_filter(f_save);   // 4) enregistrer
+        pipe.add_filter(f_load);
+        pipe.add_filter(f_scale);
+        pipe.add_filter(f_flip);
+        pipe.add_filter(f_save);
 
-        const int nthreads  = tbb::task_scheduler_init::default_num_threads();
-        const size_t tokens = (nthreads > 0 ? static_cast<size_t>(nthreads) * 4 : 16);
+        // Beaucoup de tokens pour remplir les étages parallèles
+        const size_t tokens = (size_t)hw * 12;
 
-        pipe.run(tokens);
-        std::puts("");  // retour à la ligne après les “.”
+        std::puts("");
         return 0;
     } catch (...) {
         return -1;
